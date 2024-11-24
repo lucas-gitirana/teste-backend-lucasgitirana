@@ -1,28 +1,28 @@
-<?php
+<?php 
 
-require_once __DIR__ . '/../vendor/autoload.php';
-
-use Doctrine\ORM\Tools\Setup;
+use Doctrine\DBAL\DriverManager;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\ORMSetup;
 
-// Configuração do Doctrine
-$isDevMode = true;
-$paths = [__DIR__ . '/../src/Model'];
+require_once "vendor/autoload.php";
 
-$dbParams = [
+// Create a simple "default" Doctrine ORM configuration for Attributes
+$config = ORMSetup::createAttributeMetadataConfiguration(
+    paths: [__DIR__ . '\..\src\model'],
+    isDevMode: true,
+);
+
+$connectionParams = [
     'driver'   => 'pdo_pgsql',
     'user'     => 'postgres',
-    'password' => 'password',
-    'dbname'   => 'teste_magazord',
+    'password' => 'teste123',
+    'dbname'   => 'teste_backend',
     'host'     => 'db',
     'port'     => '5432',
 ];
 
-// Criação da configuração do Doctrine
-$config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+// configuring the database connection
+$connection = DriverManager::getConnection($connectionParams, $config);
 
-// Criação do EntityManager
-$entityManager = EntityManager::create($dbParams, $config);
-
-// Retorna o EntityManager para ser usado na CLI
-return $entityManager;
+// obtaining the entity manager
+$entityManager = new EntityManager($connection, $config);
