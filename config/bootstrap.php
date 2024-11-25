@@ -26,3 +26,4 @@ $connection = DriverManager::getConnection($connectionParams, $config);
 
 // obtaining the entity manager
 $entityManager = new EntityManager($connection, $config);
+return $entityManager;
