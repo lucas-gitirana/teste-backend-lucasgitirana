@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:8.2-apache
 
 RUN apt-get update && apt-get install -y \
     unzip \
@@ -8,10 +8,5 @@ RUN apt-get update && apt-get install -y \
 
 # Instalar o Composer
 COPY --from=composer:2.6 /usr/bin/composer /usr/bin/composer
-
-# Configuração do servidor web
-WORKDIR /var/www/html
-COPY ./public /var/www/html
-COPY ./ /var/www/html
 
 RUN a2enmod rewrite

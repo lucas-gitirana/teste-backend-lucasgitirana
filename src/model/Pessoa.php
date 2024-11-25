@@ -5,7 +5,7 @@ namespace Model;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
-#[ORM\Table(name: 'products')]
+#[ORM\Table(name: 'pessoa')]
 class Pessoa {
     
     #[ORM\Id]
