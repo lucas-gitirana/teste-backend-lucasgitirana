@@ -28,21 +28,37 @@ class PessoaController {
         header('Location: /listarPessoas');
     }
 
-    public function editar($id, array $dados) {
+    public function editar($id, array $dados = null) {
         $pessoa = $this->entityManager->find(Pessoa::class, $id);
-        $pessoa->setNome($dados['nome']);
-        $pessoa->setCpf($dados['cpf']);
 
-        $this->entityManager->flush();
+        if (!$pessoa) {
+            echo "Pessoa não encontrada!";
+            return;
+        }
 
-        header('Location: /listarPessoas');
+        if ($dados) {
+            $pessoa->setNome($dados['nome']);
+            $pessoa->setCpf($dados['cpf']);
+            $this->entityManager->flush();
+            header('Location: /listarPessoas');
+            exit;
+        }
+
+        require __DIR__ . '/../view/editarPessoa.php';
     }
 
-    public function excluir($id) {
+    public function excluir($id){
         $pessoa = $this->entityManager->find(Pessoa::class, $id);
+
+        if (!$pessoa) {
+            echo "Pessoa não encontrada!";
+            return;
+        }
+
         $this->entityManager->remove($pessoa);
         $this->entityManager->flush();
 
         header('Location: /listarPessoas');
+        exit;
     }
 }

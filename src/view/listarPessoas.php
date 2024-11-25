@@ -19,8 +19,8 @@
             <td><?= $pessoa->getNome() ?></td>
             <td><?= $pessoa->getCpf() ?></td>
             <td>
-                <a href="/editar?id=<?= $pessoa->getId() ?>">Editar</a>
-                <a href="/excluir?id=<?= $pessoa->getId() ?>">Excluir</a>
+                <a href="/editarPessoa?id=<?= $pessoa->getId() ?>">Editar</a>
+                <a href="/excluirPessoa?id=<?= $pessoa->getId() ?>" onclick="return confirm('Tem certeza que deseja excluir esta pessoa?')">Excluir</a>
             </td>
         </tr>
         <?php endforeach; ?>

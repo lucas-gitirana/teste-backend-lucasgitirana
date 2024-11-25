@@ -9,7 +9,7 @@ $entityManager = require __DIR__ . '/config/bootstrap.php';
 $pessoaController = new PessoaController($entityManager);
 
 // Roteamento simples
-$rota = $_SERVER['REQUEST_URI'];
+$rota = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $metodo = $_SERVER['REQUEST_METHOD'];
 
 if ($rota === '/listarPessoas') {
@@ -20,7 +20,7 @@ if ($rota === '/listarPessoas') {
     $pessoaController->criar($_POST);
 } elseif ($rota === '/editarPessoa' && $metodo === 'GET') {
     $id = $_GET['id'];
-    require __DIR__ . '/src/view/editarPessoa.php';
+    $pessoaController->editar($id);
 } elseif ($rota === '/editarPessoa' && $metodo === 'POST') {
     $id = $_GET['id'];
     $pessoaController->editar($id, $_POST);
@@ -30,4 +30,8 @@ if ($rota === '/listarPessoas') {
 } else {
     http_response_code(404);
     echo "Página não encontrada!";
+
+
+    echo $rota;
+    echo $metodo;
 }
