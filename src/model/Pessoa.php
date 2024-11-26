@@ -3,6 +3,7 @@
 namespace Model;
 
 use Doctrine\ORM\Mapping as ORM;
+use Model\Contato;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'pessoa')]
@@ -18,6 +19,13 @@ class Pessoa {
     
     #[ORM\Column(type: 'string', unique: true)]
     private $cpf;
+
+    #[ORM\OneToMany(mappedBy:'pessoa', targetEntity: Contato::class, cascade: ['persist', 'remove'])]
+    private $contatos;
+
+    public function __construct() {
+        $this->contatos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get the value of id
@@ -65,5 +73,24 @@ class Pessoa {
         $this->cpf = $cpf;
 
         return $this;
+    }
+
+    /**
+     * Get the value of contatos
+     */ 
+    public function getContatos()
+    {
+        return $this->contatos;
+    }
+
+    public function addContato(Contato $contato)
+    {
+        $this->contatos[] = $contato;
+        $contato->setPessoa($this);
+    }
+
+    public function removeContato(Contato $contato)
+    {
+        $this->contatos->removeElement($contato);
     }
 }

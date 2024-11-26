@@ -14,18 +14,23 @@ class PessoaController {
 
     public function listar() {
         $pessoas = $this->entityManager->getRepository(Pessoa::class)->findAll();
-        require __DIR__ . '/../view/listarPessoas.php';
+        require __DIR__ . '/../view/pessoa/listarPessoas.php';
     }
 
-    public function criar(array $dados){
-        $pessoa = new Pessoa();
-        $pessoa->setNome($dados['nome']);
-        $pessoa->setCpf($dados['cpf']);
+    public function criar(array $dados = []){
+        if ($dados) {
+            $pessoa = new Pessoa();
+            $pessoa->setNome($dados['nome']);
+            $pessoa->setCpf($dados['cpf']);
+    
+            $this->entityManager->persist($pessoa);
+            $this->entityManager->flush();
+    
+            header('Location: /listarPessoas');
+            exit;
+        }
 
-        $this->entityManager->persist($pessoa);
-        $this->entityManager->flush();
-
-        header('Location: /listarPessoas');
+        require __DIR__ . '/../view/pessoa/inserirPessoa.php';
     }
 
     public function editar($id, array $dados = null) {
@@ -44,7 +49,7 @@ class PessoaController {
             exit;
         }
 
-        require __DIR__ . '/../view/editarPessoa.php';
+        require __DIR__ . '/../view/pessoa/editarPessoa.php';
     }
 
     public function excluir($id){
