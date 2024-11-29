@@ -6,91 +6,94 @@ use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
 #[ORM\Table(name: 'contato')]
-class Contato
-{
+class Contato {
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
     private $id;
 
-    #[ORM\Column(type: 'string', length:20)]
+    #[ORM\Column(type: 'string', length: 20)]
     private $tipo;
 
     #[ORM\Column(type: 'string', length: 255)]
     private $descricao;
 
-    #[ORM\ManyToOne(targetEntity: \Model\Pessoa::class, inversedBy:'contatos')]
-    #[ORM\JoinColumn(name:'pessoa_id', referencedColumnName:'id', nullable: false)]
+    #[ORM\ManyToOne(targetEntity: \Model\Pessoa::class, inversedBy: 'contatos')]
+    #[ORM\JoinColumn(name: 'pessoa_id', referencedColumnName: 'id', nullable: false)]
     private $pessoa;
 
-    /**
-     * Define os tipos permitidos para contato.
-     */
+    // Definição dos tipos de contato válidos
     public const TIPOS_VALIDOS = [1 => 'Telefone', 2 => 'E-mail'];
 
     /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
+     * Retorna o Id do contato
+     * @return int
+     */
+    public function getId() {
         return $this->id;
     }
 
     /**
-     * Get the value of tipo
+     * Retorna o Tipo do contato
      * @return int
-     */ 
-    public function getTipo()
-    {
+     */
+    public function getTipo() {
         return intval($this->tipo);
     }
 
-    public function getTipoDescricao()
-    {
+    /**
+     * Retorna a Descrição do Tipo do contato
+     * @return string
+     */
+    public function getTipoDescricao() {
         return isset(self::TIPOS_VALIDOS[$this->getTipo()]) ? self::TIPOS_VALIDOS[$this->getTipo()] : '';
     }
 
-    public function setTipo(string $tipo) {
+    /**
+     * Define o Tipo do contato
+     * @param int $tipo
+     * @return Contato
+     */
+    public function setTipo($tipo) {
         if (!array_key_exists($tipo, self::TIPOS_VALIDOS)) {
             throw new \InvalidArgumentException('Tipo de contato inválido. Deve ser "Telefone" ou "Email".');
         }
         $this->tipo = $tipo;
+        return $this;
     }
 
     /**
-     * Get the value of descricao
-     */ 
-    public function getDescricao()
-    {
+     * Retorna a Descrição do contato
+     * @return string
+     */
+    public function getDescricao() {
         return $this->descricao;
     }
 
     /**
-     * Set the value of descricao
-     *
-     * @return  self
-     */ 
-    public function setDescricao($descricao)
-    {
+     * Define a Descrição do contato
+     * @param string $descricao
+     * @return Contato
+     */
+    public function setDescricao($descricao) {
         $this->descricao = $descricao;
         return $this;
     }
 
     /**
-     * Get the value of pessoa
-     */ 
-    public function getPessoa()
-    {
+     * Retorna a Pessoa vinculada ao contato
+     * @return Pessoa
+     */
+    public function getPessoa() {
         return $this->pessoa;
     }
 
     /**
-     * Set the value of pessoa
-     *
-     * @return  self
-     */ 
-    public function setPessoa($pessoa)
-    {
+     * Define a Pessoa vinculada ao contato
+     * @param Pessoa $pessoa
+     * @return Contato
+     */
+    public function setPessoa($pessoa) {
         $this->pessoa = $pessoa;
         return $this;
     }

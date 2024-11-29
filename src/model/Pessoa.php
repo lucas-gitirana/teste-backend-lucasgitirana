@@ -8,7 +8,7 @@ use Model\Contato;
 #[ORM\Entity]
 #[ORM\Table(name: 'pessoa')]
 class Pessoa {
-    
+
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
@@ -16,11 +16,11 @@ class Pessoa {
 
     #[ORM\Column(type: 'string')]
     private $nome;
-    
+
     #[ORM\Column(type: 'string', unique: true)]
     private $cpf;
 
-    #[ORM\OneToMany(mappedBy:'pessoa', targetEntity: Contato::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToMany(mappedBy: 'pessoa', targetEntity: Contato::class, cascade: ['persist', 'remove'])]
     private $contatos;
 
     public function __construct() {
@@ -28,69 +28,71 @@ class Pessoa {
     }
 
     /**
-     * Get the value of id
-     */ 
-    public function getId()
-    {
+     * Retorna o Id da pessoa
+     * @return int
+     */
+    public function getId() {
         return $this->id;
     }
 
     /**
-     * Get the value of nome
-     */ 
-    public function getNome()
-    {
+     * Retorna o Nome da pessoa
+     * @return string
+     */
+    public function getNome() {
         return $this->nome;
     }
 
     /**
-     * Set the value of nome
-     *
-     * @return  self
-     */ 
-    public function setNome($nome)
-    {
+     * Define o Nome da pessoa
+     * @param string $nome
+     * @return Pessoa
+     */
+    public function setNome($nome) {
         $this->nome = $nome;
-
         return $this;
     }
 
     /**
-     * Get the value of cpf
-     */ 
-    public function getCpf()
-    {
+     * Retorna o CPF da pessoa
+     * @return string
+     */
+    public function getCpf() {
         return $this->cpf;
     }
 
     /**
-     * Set the value of cpf
-     *
-     * @return  self
-     */ 
-    public function setCpf($cpf)
-    {
+     * Define o CPF da pessoa
+     * @param string $cpf
+     * @return Pessoa
+     */
+    public function setCpf($cpf) {
         $this->cpf = $cpf;
-
         return $this;
     }
 
     /**
-     * Get the value of contatos
-     */ 
-    public function getContatos()
-    {
+     * Retorna a lista de contatos da pessoa
+     * @return array
+     */
+    public function getContatos() {
         return $this->contatos;
     }
 
-    public function addContato(Contato $contato)
-    {
+    /**
+     * Adiciona um contato à lista de contatos da pessoa
+     * @param Contato $contato
+     */
+    public function addContato(Contato $contato) {
         $this->contatos[] = $contato;
         $contato->setPessoa($this);
     }
 
-    public function removeContato(Contato $contato)
-    {
+    /**
+     * Remove um contato da lista de contatos da pessoa
+     * @param Contato $contato
+     */
+    public function removeContato(Contato $contato) {
         $this->contatos->removeElement($contato);
     }
 }
