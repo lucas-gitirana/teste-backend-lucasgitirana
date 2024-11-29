@@ -29,7 +29,7 @@ Este repositório contém a implementação de um sistema de gerenciamento de co
 1. Certifique-se de ter o **Docker** e o **Docker Compose** instalados.
 2. Clone o repositório:
    ```bash
-   git clone [<link-do-repositorio>](https://github.com/lucas-gitirana/teste-backend-lucasgitirana.git)
+   git clone https://github.com/lucas-gitirana/teste-backend-lucasgitirana.git
    cd teste-backend-lucasgitirana
 3. Inicie os contêiners:
    ```bash
