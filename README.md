@@ -59,7 +59,7 @@ Este repositório contém a implementação de um sistema de gerenciamento de co
 ![image](https://github.com/user-attachments/assets/5e02dc7f-87d0-4853-a97a-1a1c6a2f9923)
 
 
-### Considerações finais
+### Considerações Finais
 Para quaisquer dúvidas sobre o projeto entre em contato.  
 E-mail: gitiranalucas5@gmail.com  
 Lucas Emanoel Gitirana
