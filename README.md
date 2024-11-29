@@ -41,7 +41,7 @@ Este repositório contém a implementação de um sistema de gerenciamento de co
 ### Como Usar
 1. Acesse o sistema no navegador:
    ```bash
-   http://localhost:<porta>
+   http://localhost:8080
 2. Navegue pelas seguintes funcionalidades:
 - **Listar Pessoas**: Página inicial com campo de pesquisa.
 - **Cadastrar Pessoa**: Inclua um novo registro de pessoa.
