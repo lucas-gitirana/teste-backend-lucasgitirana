@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Editar Pessoa</title>
 </head>
+
 <body>
     <h1>Editar Pessoa</h1>
     <form action="/editarPessoa?id=<?= $pessoa->getId() ?>" method="POST">
@@ -16,4 +18,5 @@
     </form>
     <a href="/listarPessoas">Voltar</a>
 </body>
+
 </html>

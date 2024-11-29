@@ -29,13 +29,13 @@ if ($rota === '/listarPessoas') {
 
 elseif ($rota === '/listarContatos') {
     $contatoController->listar();
-} elseif ($rota === '/inserirPessoa') {
+} elseif ($rota === '/inserirContato') {
     $contatoController->criar(($metodo === 'POST') ? $_POST : []);
-} elseif ($rota === '/editarPessoa' ) {
-    $id = $_GET['id'];
+} elseif ($rota === '/editarContato' ) {
+    $id = $_GET['idContato'];
     $contatoController->editar($id, ($metodo === 'POST') ? $_POST : []);
-} elseif ($rota === '/excluirPessoa') {
-    $id = $_GET['id'];
+} elseif ($rota === '/excluirContato') {
+    $id = $_GET['idContato'];
     $contatoController->excluir($id);
 }
 

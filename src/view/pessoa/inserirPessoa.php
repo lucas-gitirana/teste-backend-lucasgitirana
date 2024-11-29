@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Criar Pessoa</title>
 </head>
+
 <body>
     <h1>Criar Pessoa</h1>
     <form action="/inserirPessoa" method="POST">
@@ -15,4 +17,5 @@
         <button type="submit">Salvar</button>
     </form>
 </body>
+
 </html>

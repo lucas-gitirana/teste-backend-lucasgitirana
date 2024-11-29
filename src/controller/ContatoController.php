@@ -20,14 +20,14 @@ class ContatoController {
 
     public function criar(array $dados = []){
         if ($dados) {
-            $pessoa = $this->entityManager->find(Pessoa::class, $dados['pessoa_id']);
+            $pessoa = $this->entityManager->find(Pessoa::class, $dados['idPessoa']);
             if (!$pessoa) {
                 echo "Pessoa não encontrada!";
                 return;
             }
 
             $contato = new Contato();
-            $contato->setTipo($dados['tipo']);
+            $contato->setTipo($dados["tipo"]);
             $contato->setDescricao($dados['descricao']);
             $contato->setPessoa($pessoa);
     
@@ -38,6 +38,8 @@ class ContatoController {
             exit;
         }
 
+        $tiposContato = Contato::TIPOS_VALIDOS;
+        $listaPessoas = $this->entityManager->getRepository(Pessoa::class)->findAll();
         require __DIR__ . '/../view/contato/inserirContato.php';
     }
 
@@ -50,7 +52,7 @@ class ContatoController {
         }
 
         if ($dados) {
-            $pessoa = $this->entityManager->find(Pessoa::class, $dados['pessoa_id']);
+            $pessoa = $this->entityManager->find(Pessoa::class, $dados['idPessoa']);
             if (!$pessoa) {
                 echo "Pessoa não encontrada!";
                 return;
@@ -66,6 +68,7 @@ class ContatoController {
             exit;
         }
 
+        $listaPessoas = $this->entityManager->getRepository(Pessoa::class)->findAll();
         require __DIR__ . '/../view/contato/editarContato.php';
     }
 

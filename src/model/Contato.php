@@ -26,7 +26,7 @@ class Contato
     /**
      * Define os tipos permitidos para contato.
      */
-    const TIPOS_VALIDOS = ['Telefone', 'Email'];
+    public const TIPOS_VALIDOS = [1 => 'Telefone', 2 => 'E-mail'];
 
     /**
      * Get the value of id
@@ -38,14 +38,20 @@ class Contato
 
     /**
      * Get the value of tipo
+     * @return int
      */ 
     public function getTipo()
     {
-        return $this->tipo;
+        return intval($this->tipo);
+    }
+
+    public function getTipoDescricao()
+    {
+        return isset(self::TIPOS_VALIDOS[$this->getTipo()]) ? self::TIPOS_VALIDOS[$this->getTipo()] : '';
     }
 
     public function setTipo(string $tipo) {
-        if (!in_array($tipo, self::TIPOS_VALIDOS)) {
+        if (!array_key_exists($tipo, self::TIPOS_VALIDOS)) {
             throw new \InvalidArgumentException('Tipo de contato inválido. Deve ser "Telefone" ou "Email".');
         }
         $this->tipo = $tipo;
@@ -67,7 +73,6 @@ class Contato
     public function setDescricao($descricao)
     {
         $this->descricao = $descricao;
-
         return $this;
     }
 
@@ -87,7 +92,6 @@ class Contato
     public function setPessoa($pessoa)
     {
         $this->pessoa = $pessoa;
-
         return $this;
     }
 }
