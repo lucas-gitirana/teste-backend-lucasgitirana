@@ -30,7 +30,7 @@ Este repositório contém a implementação de um sistema de gerenciamento de co
 2. Clone o repositório:
    ```bash
    git clone https://github.com/lucas-gitirana/teste-backend-lucasgitirana.git
-   cd teste-backend-lucasgitirana
+   cd .\teste-backend-lucasgitirana\
 3. Inicie os contêiners:
    ```bash
    docker-compose up -d
