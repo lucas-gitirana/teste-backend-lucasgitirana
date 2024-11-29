@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Lista de Contatos</title>
+    <title>Contatos</title>
     <link rel="stylesheet" href="../../../public/styles.css">
     <link rel="stylesheet" href="../../../public/listarPessoas.css">
     <link rel="stylesheet" href="../../../public/listarContatos.css">
