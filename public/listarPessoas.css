@@ -1,0 +1,36 @@
+.lista-pessoas {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.lista-pessoas form input {
+    width: 90%;
+    border: none;
+    padding: 0.5rem;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+    margin-right: 0.3rem;
+    border-radius: 0.7rem;
+}
+
+.lista-pessoas__cabecalho {
+    margin-bottom: 2rem;
+}
+
+.lista-pessoas__cabecalho .lista-pessoas__area-pesquisa {
+    display: flex;
+}
+
+.lista-pessoas__cabecalho .lista-pessoas__area-pesquisa form {
+    width: 80%;
+}
+
+.lista-pessoas__cabecalho .lista-pessoas__area-pesquisa form .btnPesquisar {
+    font-size: 1.3rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.lista-pessoas__cabecalho .lista-pessoas__area-pesquisa form .btnPesquisar:hover {
+    color: rgb(25, 150, 108);
+}

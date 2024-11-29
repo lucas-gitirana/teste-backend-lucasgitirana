@@ -73,18 +73,15 @@ class PessoaController
         exit;
     }
 
-    public function pesquisar($termo)
+    public function pesquisar($valor)
     {
-        // Criar uma consulta para buscar pessoas pelo nome ou CPF
         $query = $this->entityManager->createQuery(
-            'SELECT p FROM Models\Pessoa p WHERE p.nome LIKE :termo OR p.cpf LIKE :termo'
+            'SELECT p FROM Model\Pessoa p WHERE p.nome LIKE :valor OR p.cpf LIKE :valor'
         );
-        $query->setParameter('termo', '%' . $termo . '%');
+        $query->setParameter('valor', '%' . $valor . '%');
 
-        // Obter os resultados
         $pessoas = $query->getResult();
 
-        // Carregar a View de listagem com os resultados
-        require __DIR__ . '/../Views/listar.php';
+        require __DIR__ . '/../view/pessoa/listarPessoas.php';
     }
 }

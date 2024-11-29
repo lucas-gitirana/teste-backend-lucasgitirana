@@ -18,30 +18,26 @@ if ($rota === '/listarPessoas') {
     $pessoaController->listar();
 } elseif ($rota === '/inserirPessoa') {
     $pessoaController->criar(($metodo === 'POST') ? $_POST : []);
-} elseif ($rota === '/editarPessoa' ) {
+} elseif ($rota === '/editarPessoa') {
     $id = $_GET['id'];
     $pessoaController->editar($id, ($metodo === 'POST') ? $_POST : []);
 } elseif ($rota === '/excluirPessoa') {
     $id = $_GET['id'];
     $pessoaController->excluir($id);
-}
-
-
-elseif ($rota === '/listarContatos') {
+} elseif ($rota === '/buscarPessoa' && $metodo === 'GET') {
+    $termo = $_GET['termo'];
+    $pessoaController->pesquisar($termo);
+} elseif ($rota === '/listarContatos') {
     $contatoController->listar();
 } elseif ($rota === '/inserirContato') {
     $contatoController->criar(($metodo === 'POST') ? $_POST : []);
-} elseif ($rota === '/editarContato' ) {
+} elseif ($rota === '/editarContato') {
     $id = $_GET['idContato'];
     $contatoController->editar($id, ($metodo === 'POST') ? $_POST : []);
 } elseif ($rota === '/excluirContato') {
     $id = $_GET['idContato'];
     $contatoController->excluir($id);
-}
-
-
-
-else {
+} else {
     http_response_code(404);
     echo "Página não encontrada!";
 }

@@ -1,6 +1,9 @@
 # Habilitar o mod_rewrite
 RewriteEngine On
 
+# Redirecionar a raiz (/) para /listarPessoas
+RewriteRule ^$ /listarPessoas [R=301,L]
+
 # Redireciona todas as requisições para o index.php, exceto arquivos e diretórios existentes
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
