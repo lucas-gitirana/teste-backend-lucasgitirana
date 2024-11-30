@@ -34,9 +34,6 @@ Este repositório contém a implementação de um sistema de gerenciamento de co
 3. Inicie os contêiners:
    ```bash
    docker-compose up -d
-4. Acesse o contêiner do PHP (se necessário):
-   ```bash
-   docker exec -it php_app bash
 
 ### Como Usar
 1. Acesse o sistema no navegador:
